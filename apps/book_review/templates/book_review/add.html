@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Book and Review</title>
+</head>
+<body>
+    <p><a href="/books/">Home</a> <a href="/logout">Logout</a></p>
+    <div id="main">
+        <h2>Add a New Book Title and a Review:</h2>
+        <form action="/process" method="POST">
+            {% csrf_token %}
+            <p>
+                <label for="title">Book Title:</label>
+                <input type="text" name="title">
+            </p>
+            <p>
+                <label for="author">Author:</label>
+                <input type="text" name="author" >
+            </p>
+            <p>
+                <label for="review">Review:</label>
+                <input type="textarea" name="review">
+            </p>
+            <p>
+                <label for="rating">Rating</label>
+                <input type="number" min="1" max="5" step="1" placeholder="1" name="rating" >
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        
+    </div>
+</body>
+</html>

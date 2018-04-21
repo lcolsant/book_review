@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books Home</title>
+</head>
+<body>
+    <h2>Hello {{ user.first_name }}!</h2>
+    <p><a href="/books/add">Add a book</a> <a href="/logout">Logout</a></p>
+    <div id="left">
+        <h3>Recent Book Reviews:</h3>
+        {% for review in reviews %}
+        <fieldset>
+            <h3>{{review.book.title}}</h3>    
+            <p>Rating: {{review.rating}}</p>
+            <p><a href="/users/{{review.reviewer.id}}">{{review.reviewer.first_name}}</a> says: {{review.review}}</p>  
+            <p>Posted on: {{review.created_at}}</p>
+        </fieldset>
+        {% endfor %}
+    </div>
+    <div id="right">
+        <h3>Other books with Reviews:</h3>
+        <ul>
+            {% for book in all_books %}
+                <li><a href="/books/{{book.id}}">{{book.title}}</a></li>    
+            {% endfor %}
+        </ul>
+    </div>
+    <form action="/logout">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>
